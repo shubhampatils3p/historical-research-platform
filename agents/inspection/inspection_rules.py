@@ -18,6 +18,12 @@ Chief Architect
 
 from typing import Optional
 
+from schemas.common.data_contract import (
+    TimeFields,
+    UnderlyingFields,
+    OptionFields
+)
+
 import pandas as pd
 
 
@@ -98,15 +104,7 @@ def detect_timestamp_column(
 
     candidates = [
 
-        "timestamp",
-
-        "datetime",
-
-        "date_time",
-
-        "time",
-
-        "date"
+        TimeFields.TIMESTAMP
 
     ]
 
@@ -158,27 +156,27 @@ def unique_dates(df: pd.DataFrame):
 
 def strike_count(df: pd.DataFrame):
 
-    if "strike" not in df.columns:
+    if OptionFields.STRIKE not in df.columns:
         return None
 
-    return df["strike"].nunique()
+    return df[OptionFields.STRIKE].nunique()
 
 
 def expiry_count(df: pd.DataFrame):
 
-    if "expiry" not in df.columns:
+    if OptionFields.EXPIRY not in df.columns:
         return None
 
-    return df["expiry"].nunique()
+    return df[OptionFields.EXPIRY].nunique()
 
 
 def option_types(df: pd.DataFrame):
 
-    if "option_type" not in df.columns:
+    if OptionFields.OPTION_TYPE not in df.columns:
         return None
 
     return sorted(
-        df["option_type"]
+        df[OptionFields.OPTION_TYPE]
         .dropna()
         .unique()
         .tolist()
@@ -187,12 +185,12 @@ def option_types(df: pd.DataFrame):
 
 def underlying(df: pd.DataFrame):
 
-    if "underlying" not in df.columns:
+    if UnderlyingFields.UNDERLYING not in df.columns:
         return None
 
     values = (
 
-        df["underlying"]
+        df[UnderlyingFields.UNDERLYING]
 
         .dropna()
 
@@ -214,15 +212,15 @@ def price_columns(df: pd.DataFrame):
 
     keywords = [
 
-        "open",
+        UnderlyingFields.OPEN,
 
-        "high",
+        UnderlyingFields.HIGH,
 
-        "low",
+        UnderlyingFields.LOW,
 
-        "close",
+        UnderlyingFields.CLOSE,
 
-        "ltp"
+        UnderlyingFields.LTP
 
     ]
 
@@ -232,7 +230,7 @@ def price_columns(df: pd.DataFrame):
 
         for keyword in keywords:
 
-            if keyword in column.lower():
+            if column == keyword:
 
                 columns.append(column)
 

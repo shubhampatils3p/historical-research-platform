@@ -81,13 +81,27 @@ TABLES = {
 
             file_path TEXT PRIMARY KEY,
 
-            validated_at TIMESTAMP,
+            dataset_name TEXT,
+
+            validation_time TIMESTAMP,
 
             validation_status TEXT,
 
-            error_count INTEGER,
+            total_records INTEGER,
 
-            warning_count INTEGER
+            passed_records INTEGER,
+
+            failed_records INTEGER,
+
+            warning_records INTEGER,
+
+            duplicate_records INTEGER,
+
+            null_records INTEGER,
+
+            total_issues INTEGER,
+
+            report_path TEXT
 
         )
 
