@@ -16,7 +16,7 @@ from database.database_manager import DatabaseManager
 from agents.discovery.dataset_registry import DatasetRegistryAgent
 from agents.inspection.dataset_inspector import DatasetInspectorAgent
 from agents.validation.validation_agent import ValidationAgent
-
+from agents.cleaning.cleaning_agent import CleaningAgent
 
 # ==========================================================
 # Agent Runner
@@ -66,6 +66,11 @@ def initialize():
     run_agent(
         "Validation Agent",
         ValidationAgent()
+    )
+    
+    run_agent(
+        "Cleaning Agent",
+        CleaningAgent()
     )
 
     # ------------------------------------------------------

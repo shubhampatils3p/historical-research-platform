@@ -106,6 +106,36 @@ TABLES = {
         )
 
     """,
+    
+    "cleaning_results": """
+
+        CREATE TABLE IF NOT EXISTS cleaning_results (
+
+            file_path TEXT PRIMARY KEY,
+
+            cleaned_at TIMESTAMP,
+
+            cleaning_status TEXT,
+
+            rows_before INTEGER,
+
+            rows_after INTEGER,
+
+            duplicates_removed INTEGER,
+
+            null_rows_removed INTEGER,
+
+            null_columns_removed INTEGER,
+
+            columns_standardized INTEGER,
+
+            data_types_converted INTEGER,
+
+            output_path TEXT
+
+        )
+
+    """,
 
     "feature_runs": """
 

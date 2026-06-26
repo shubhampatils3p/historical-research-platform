@@ -118,6 +118,17 @@ class DatasetRepository:
             WHERE status='inspected'
             """
         ).fetchall()
+        
+    def get_validated_datasets(self):
+
+        return self.db.execute(
+            """
+            SELECT *
+            FROM dataset_registry
+            WHERE status='validated'
+            ORDER BY dataset_name
+            """
+        ).fetchall()
 
     # ==========================================================
     # UPDATE
@@ -197,7 +208,7 @@ class DatasetRepository:
             """,
             (file_path,)
         )
-
+            
     # ==========================================================
     # DELETE
     # ==========================================================
